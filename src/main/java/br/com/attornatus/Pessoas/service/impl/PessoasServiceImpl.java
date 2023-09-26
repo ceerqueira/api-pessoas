@@ -56,5 +56,11 @@ public class PessoasServiceImpl implements PessoasService{
         }
         return repository.save(editarPessoa);
     }
+
+    @Override
+    public Pessoas consultarPessoa(Long id) {
+        return repository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada com o ID: " + id ));
+    }
     
 }

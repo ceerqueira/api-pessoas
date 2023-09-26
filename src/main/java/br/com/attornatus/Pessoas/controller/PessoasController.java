@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.attornatus.Pessoas.model.Pessoas;
 import br.com.attornatus.Pessoas.model.DTO.PessoasDTO;
 import br.com.attornatus.Pessoas.service.PessoasService;
@@ -35,6 +35,14 @@ public class PessoasController {
         List<Pessoas> listaDePessoas = service.listar();
 
         return ResponseEntity.ok().body(listaDePessoas);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Pessoas> consultarPessoa (@PathVariable ("id")Long id){
+
+        Pessoas pessoa = service.consultarPessoa(id);
+
+        return ResponseEntity.ok().body(pessoa);
     }
 
     @PutMapping

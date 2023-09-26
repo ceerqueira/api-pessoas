@@ -13,4 +13,6 @@ public interface PessoasService {
 
     public Pessoas editar(PessoasDTO pessoa);
 
+    public Pessoas consultarPessoa(Long id);
+
 }
