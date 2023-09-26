@@ -14,7 +14,7 @@ Para acessar a documentação Swagger, siga estas etapas:
 
 Nesta seção, é possível criar, editar e listar as pessoas.
 
-**POST** `http://localhost:8080/pessoas`
+**POST** CADASTRAR PESSOA `http://localhost:8080/pessoas`
 
 Para realizar uma requisição do tipo Post é necessário usar o formato JSON e informar o nome e a data de nascimento; caso contrário, ele lançará uma exceção.
 
@@ -25,16 +25,16 @@ Para realizar uma requisição do tipo Post é necessário usar o formato JSON e
 }
 ```
 
-**GET** `http://localhost:8080/pessoas`
+**GET** LISTAR TODAS AS PESSOAS `http://localhost:8080/pessoas`
 
 Listará em formato JSON todas as pessoas cadastradas.
 
-**GET** `http://localhost:8080/pessoas/(idPessoa)`
+**GET** BUSCAR POR PESSOA `http://localhost:8080/pessoas/(idPessoa)`
 
 Listará em formato JSON a pessoa e seu endereço principal.
 
 
-**PUT** `http://localhost:8080/pessoas`
+**PUT** ATUALIZAR DADOS DA PESSOA`http://localhost:8080/pessoas`
 
 Para realizar uma alteração é necessário informar o `idPessoa`. Se desejar alterar o endereço principal, é necessário informar o novo `idEnderecoPrincipal`, que deve pertencer à mesma `idPessoa`; caso contrário, ele lançará uma exceção.
 
@@ -49,7 +49,7 @@ Para realizar uma alteração é necessário informar o `idPessoa`. Se desejar a
 
 ### Endereço (/endereco)
 
-**POST** `http://localhost:8080/endereco`
+**POST** CADASTRAR ENDEREÇO DE UMA PESSOA `http://localhost:8080/endereco`
 
 Para realizar uma requisição do tipo Post é necessário usar o formato JSON e informar o `idPessoa`, `logradouro`, `numero` e `cep`; caso contrário, ele lançará uma exceção.
 
@@ -63,6 +63,6 @@ Para realizar uma requisição do tipo Post é necessário usar o formato JSON e
 }
 ```
 
-**GET** `http://localhost:8080/endereco/(idPessoa)`
+**GET** BUSCAR ENDEREÇO PELO ID DA PESSOA `http://localhost:8080/endereco/(idPessoa)`
 
 Essa requisição faz uma busca pelo `idPessoa` e retorna os endereços cadastrados da pessoa.
