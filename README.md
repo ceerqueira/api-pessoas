@@ -29,6 +29,11 @@ Para realizar uma requisição do tipo Post é necessário usar o formato JSON e
 
 Listará em formato JSON todas as pessoas cadastradas.
 
+**GET** `http://localhost:8080/pessoas/(idPessoa)`
+
+Listará em formato JSON a pessoa e seu endereço principal.
+
+
 **PUT** `http://localhost:8080/pessoas`
 
 Para realizar uma alteração é necessário informar o `idPessoa`. Se desejar alterar o endereço principal, é necessário informar o novo `idEnderecoPrincipal`, que deve pertencer à mesma `idPessoa`; caso contrário, ele lançará uma exceção.
