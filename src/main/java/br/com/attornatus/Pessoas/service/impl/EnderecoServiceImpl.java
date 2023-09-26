@@ -28,10 +28,8 @@ public class EnderecoServiceImpl implements EnderecoService{
     @JsonIgnore
     public Endereco salvar(EnderecoDTO endereco) {
 
-
         Pessoas pessoas = pessoasRepository.findById(endereco.idPessoa())
             .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada com o ID: " + endereco.idPessoa()));
-;
 
         if(pessoas.getEnderecoPrincipal() == null){
             pessoas.setEnderecoPrincipal(null);
@@ -50,7 +48,7 @@ public class EnderecoServiceImpl implements EnderecoService{
             pessoas.setEnderecoPrincipal(enderecoNovo);
             pessoasRepository.save(pessoas);
         } 
-
+        
         return enderecoNovo;
     }
 
