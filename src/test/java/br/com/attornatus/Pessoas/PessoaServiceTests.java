@@ -1,10 +1,14 @@
 package br.com.attornatus.Pessoas;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,16 +16,22 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
+
+import br.com.attornatus.Pessoas.model.Endereco;
 import br.com.attornatus.Pessoas.model.Pessoa;
 import br.com.attornatus.Pessoas.model.DTO.PessoaDTO;
 import br.com.attornatus.Pessoas.repository.EnderecoRespository;
 import br.com.attornatus.Pessoas.repository.PessoaRepository;
+import br.com.attornatus.Pessoas.service.impl.EnderecoServiceImpl;
 import br.com.attornatus.Pessoas.service.impl.PessoaServiceImpl;
 
 public class PessoaServiceTests {
 
     @InjectMocks
     private PessoaServiceImpl pessoaService;
+
+    @InjectMocks
+    private EnderecoServiceImpl enderecoService;
 
     @Mock
     private PessoaRepository pessoaRepository;
@@ -35,6 +45,15 @@ public class PessoaServiceTests {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
+
+        when(modelMapper.map(any(Pessoa.class), eq(PessoaDTO.class)))
+                .thenAnswer(invocation -> {
+                    Pessoa pessoa = invocation.getArgument(0);
+                    PessoaDTO pessoaDTO = new PessoaDTO();
+                    pessoaDTO.setIdPessoa(pessoa.getId());
+                    pessoaDTO.setNome(pessoa.getNome());
+                    return pessoaDTO;
+                });
     }
 
     @Test
@@ -75,4 +94,34 @@ public class PessoaServiceTests {
         assertEquals(2, resultado.size());
     }
 
+    @Test
+    public void testConverterParaDTO() {
+        // Preparar dados de entrada
+        Pessoa pessoa = new Pessoa();
+        pessoa.setId(1L);
+        pessoa.setNome("João");
+
+        // Executar a ação do serviço
+        PessoaDTO resultado = pessoaService.converterParaDTO(pessoa);
+
+        // Verificar resultados
+        assertNotNull(resultado);
+        assertEquals(1L, resultado.getIdPessoa());
+        assertEquals("João", resultado.getNome());
+    }
+
+    @Test
+    public void testConsultarPessoa() {
+        Long pessoaId = 1L;
+        Pessoa pessoa = new Pessoa();
+        pessoa.setId(pessoaId);
+        pessoa.setNome("Maria");
+
+        when(pessoaRepository.findById(pessoaId)).thenReturn(Optional.of(pessoa));
+        PessoaDTO resultado = pessoaService.consultarPessoa(pessoaId);
+
+        assertNotNull(resultado);
+        assertEquals(pessoaId, resultado.getIdPessoa());
+        assertEquals("Maria", resultado.getNome());
+    }
 }
