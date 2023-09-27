@@ -11,43 +11,43 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.attornatus.Pessoas.model.Pessoas;
-import br.com.attornatus.Pessoas.model.DTO.PessoasDTO;
-import br.com.attornatus.Pessoas.service.PessoasService;
+import br.com.attornatus.Pessoas.model.DTO.PessoaDTO;
+import br.com.attornatus.Pessoas.service.PessoaService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/pessoas")
-public class PessoasController {
+public class PessoaController {
 
     @Autowired
-    private PessoasService service;
-    
+    private PessoaService service;
+
     @PostMapping
-    public ResponseEntity<Pessoas> salvar (@RequestBody Pessoas pessoas){
-        Pessoas resultado = service.salvar(pessoas);
+    public ResponseEntity<PessoaDTO> salvar (@RequestBody @Valid PessoaDTO pessoa){
+        PessoaDTO resultado = service.salvar(pessoa);
         return ResponseEntity.ok().body(resultado);
 
     }
 
     @GetMapping
-    public ResponseEntity<List< Pessoas>> listar (){
+    public ResponseEntity<List< PessoaDTO>> listar (){
 
-        List<Pessoas> listaDePessoas = service.listar();
+        List<PessoaDTO> listaDePessoas = service.listar();
 
         return ResponseEntity.ok().body(listaDePessoas);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pessoas> consultarPessoa (@PathVariable ("id")Long id){
+    public ResponseEntity<PessoaDTO> consultarPessoa (@PathVariable ("id")Long id){
 
-        Pessoas pessoa = service.consultarPessoa(id);
+        PessoaDTO pessoa = service.consultarPessoa(id);
 
         return ResponseEntity.ok().body(pessoa);
     }
 
     @PutMapping
-    public ResponseEntity<Pessoas> atualizar(@RequestBody PessoasDTO pessoa){
-        Pessoas pessoaEditada = service.editar(pessoa);
+    public ResponseEntity<PessoaDTO> atualizar(@RequestBody PessoaDTO pessoa){
+        PessoaDTO pessoaEditada = service.editar(pessoa);
         return ResponseEntity.ok().body(pessoaEditada);
     }
     

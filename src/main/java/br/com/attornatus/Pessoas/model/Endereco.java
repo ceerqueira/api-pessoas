@@ -2,7 +2,7 @@ package br.com.attornatus.Pessoas.model;
 
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,8 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,16 +28,13 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     private String logradouro;
-    @NotBlank
     private String cep;
-    @NotNull
     private int numero;
     private String cidade;
 
     @ManyToOne
     @JoinColumn(name = "pessoa_id")
-    @JsonIgnore
-    private Pessoas pessoas;
+    @JsonBackReference
+    private Pessoa pessoa;
 }

@@ -1,5 +1,9 @@
 package br.com.attornatus.Pessoas.model.DTO;
 
+import java.sql.Date;
+
+
+import br.com.attornatus.Pessoas.model.Endereco;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,13 +17,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class EnderecoDTO {
-    @NotBlank
-    private String logradouro; 
-    @NotBlank
-    private String cep;
-    @NotNull
-    private int numero;
-    private String cidade ;
+public class PessoaDTO {
     private Long idPessoa;
+    @NotBlank
+    private String nome;
+    @NotNull
+    private Date dataNascimento;
+    private Long idEnderecoPrincipal;
+    private Endereco enderecoPrincipal;
+
 }

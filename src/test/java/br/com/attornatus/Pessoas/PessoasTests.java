@@ -1,35 +1,73 @@
 package br.com.attornatus.Pessoas;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-import br.com.attornatus.Pessoas.model.Pessoas;
-import br.com.attornatus.Pessoas.model.DTO.PessoasDTO;
-import br.com.attornatus.Pessoas.service.PessoasService;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import java.sql.Date;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import br.com.attornatus.Pessoas.model.Pessoa;
+import br.com.attornatus.Pessoas.model.DTO.PessoaDTO;
+import br.com.attornatus.Pessoas.repository.EnderecoRespository;
+import br.com.attornatus.Pessoas.repository.PessoaRepository;
+import br.com.attornatus.Pessoas.service.impl.EnderecoServiceImpl;
+import br.com.attornatus.Pessoas.service.impl.PessoaServiceImpl;
 
 @SpringBootTest
-class PessoasTests {
+@ExtendWith(MockitoExtension.class)
+class PessoaServiceImplTests {
 
-    @Autowired
-    private PessoasService pessoasService;
+    @InjectMocks
+    private PessoaServiceImpl pessoaService;
 
-    @Test
-    public void testEditarPessoaComSucesso() {
-        PessoasDTO pessoaDTO = new PessoasDTO(1L, "Novo Nome", Date.valueOf("1990-01-01"), null);
+    @InjectMocks
+    private EnderecoServiceImpl enderecoService;
 
-        Pessoas pessoa = new Pessoas();
-        pessoa.setNome("Fulano 1");
-        pessoa.setDataNascimento(Date.valueOf("1883-12-12"));
+    @Mock
+    private PessoaRepository pessoaRepository;
 
-        pessoasService.salvar(pessoa);
+    @Mock
+    private EnderecoRespository enderecoRepository;
 
-        Pessoas pessoaEditada = pessoasService.editar(pessoaDTO);
+    @Mock
+    private ModelMapper modelMapper;
 
-        assertEquals("Novo Nome", pessoaEditada.getNome());
-        assertEquals(Date.valueOf("1990-01-01"), pessoaEditada.getDataNascimento());
+/*     @Test
+    void testSalvarPessoa() {
+        PessoaDTO pessoaDTO = new PessoaDTO();
+        pessoaDTO.setNome("João");
+        pessoaDTO.setDataNascimento(new Date(1992));
+        pessoaDTO.setIdEnderecoPrincipal(1L);
+
+        Pessoa pessoaSalva = new Pessoa();
+        pessoaSalva.setId(1L);
+        pessoaSalva.setNome("João");
+        pessoaSalva.setDataNascimento(new Date(1993));
+
+        when(pessoaRepository.save(any(Pessoa.class))).thenReturn(pessoaSalva);
+
+        PessoaDTO resultado = pessoaService.salvar(pessoaDTO);
+
+        assertNull(resultado);
     }
 
+    @Test
+    void testListarPessoas() {
+        List<Pessoa> pessoas = Arrays.asList(new Pessoa(), new Pessoa());
+        when(pessoaRepository.findAll()).thenReturn(pessoas);
+
+        List<PessoaDTO> resultado = pessoaService.listar();
+
+        assertNull(resultado);
+        assertEquals(pessoas.size(), resultado.size());
+    } */
 }

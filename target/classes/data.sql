@@ -1,5 +1,5 @@
--- Crie a tabela pessoas sem a chave estrangeira para endereco
-CREATE TABLE pessoas
+
+CREATE TABLE pessoa
 (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
@@ -17,8 +17,8 @@ CREATE TABLE endereco
     pessoa_id INT
 );
 
-ALTER TABLE pessoas
+ALTER TABLE pessoa
 ADD CONSTRAINT FK_pessoa_endereco FOREIGN KEY (endereco_principal_id) REFERENCES endereco(id);
 
 ALTER TABLE endereco
-ADD CONSTRAINT FK_endereco_pessoa FOREIGN KEY (pessoa_id) REFERENCES pessoas(id);
+ADD CONSTRAINT FK_endereco_pessoa FOREIGN KEY (pessoa_id) REFERENCES pessoa(id);

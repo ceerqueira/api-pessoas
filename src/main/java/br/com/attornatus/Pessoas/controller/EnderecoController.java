@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.com.attornatus.Pessoas.model.Endereco;
 import br.com.attornatus.Pessoas.model.DTO.EnderecoDTO;
 import br.com.attornatus.Pessoas.service.EnderecoService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/endereco")
@@ -22,16 +21,23 @@ public class EnderecoController {
     @Autowired
     private EnderecoService service;
     
+
     @PostMapping
-    public ResponseEntity<String> salvar (@RequestBody EnderecoDTO endereco){
-        service.salvar(endereco);
-        return ResponseEntity.ok().body("Endereço cadastrado com sucesso");
+    public ResponseEntity<EnderecoDTO> salvar (@RequestBody @Valid EnderecoDTO endereco){
+        EnderecoDTO enderecoDTO = service.salvar(endereco);
+        return ResponseEntity.ok().body(enderecoDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<List< EnderecoDTO>> listarTodosEnderecos (){
+        List<EnderecoDTO> listaDePessoas = service.listar();
+        return ResponseEntity.ok().body(listaDePessoas);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List< Endereco>> listar (@PathVariable ("id")Long id){
+    public ResponseEntity<List< EnderecoDTO>> listar (@PathVariable ("id")Long id){
 
-        List<Endereco> listaDePessoas = service.listarPorPessoa(id);
+        List<EnderecoDTO> listaDePessoas = service.listarPorPessoa(id);
 
         return ResponseEntity.ok().body(listaDePessoas);
     }

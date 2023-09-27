@@ -1,0 +1,15 @@
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/service/EnderecoService.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/model/Pessoa.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/repository/PessoaRepository.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/config/SpringConfigModelMapper.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/controller/EnderecoController.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/model/Endereco.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/service/impl/PessoaServiceImpl.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/config/SpringDocConfigurations.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/repository/EnderecoRespository.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/controller/PessoaController.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/model/DTO/PessoaDTO.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/model/DTO/EnderecoDTO.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/service/impl/EnderecoServiceImpl.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/PessoasApplication.java
+/Users/victorbarros/Downloads/api-pessoas/src/main/java/br/com/attornatus/Pessoas/service/PessoaService.java
