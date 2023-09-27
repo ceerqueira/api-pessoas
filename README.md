@@ -63,6 +63,11 @@ Para realizar uma requisição do tipo Post é necessário usar o formato JSON e
 }
 ```
 
+**GET** LISTAR TODOS OS ENDEREÇOS `http://localhost:8080/endereco`
+
+Listará em formato JSON todas os endereços cadastradas.
+
+
 **GET** BUSCAR ENDEREÇO PELO ID DA PESSOA `http://localhost:8080/endereco/(idPessoa)`
 
 Essa requisição faz uma busca pelo `idPessoa` e retorna os endereços cadastrados da pessoa.
