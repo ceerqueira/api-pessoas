@@ -1,5 +1,4 @@
 package br.com.attornatus.Pessoas;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -7,30 +6,22 @@ import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.test.context.SpringBootTest;
-
 import br.com.attornatus.Pessoas.model.Pessoa;
 import br.com.attornatus.Pessoas.model.DTO.PessoaDTO;
 import br.com.attornatus.Pessoas.repository.EnderecoRespository;
 import br.com.attornatus.Pessoas.repository.PessoaRepository;
-import br.com.attornatus.Pessoas.service.impl.EnderecoServiceImpl;
 import br.com.attornatus.Pessoas.service.impl.PessoaServiceImpl;
 
-@SpringBootTest
-@ExtendWith(MockitoExtension.class)
-class PessoaServiceImplTests {
+public class PessoaServiceTests {
 
     @InjectMocks
     private PessoaServiceImpl pessoaService;
-
-    @InjectMocks
-    private EnderecoServiceImpl enderecoService;
 
     @Mock
     private PessoaRepository pessoaRepository;
@@ -41,33 +32,47 @@ class PessoaServiceImplTests {
     @Mock
     private ModelMapper modelMapper;
 
-/*     @Test
-    void testSalvarPessoa() {
-        PessoaDTO pessoaDTO = new PessoaDTO();
-        pessoaDTO.setNome("João");
-        pessoaDTO.setDataNascimento(new Date(1992));
-        pessoaDTO.setIdEnderecoPrincipal(1L);
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    public void testSalvarPessoa() {
+        // Preparar dados de entrada
+        PessoaDTO pessoaDTOEntrada = new PessoaDTO();
+        pessoaDTOEntrada.setNome("João");
+        pessoaDTOEntrada.setDataNascimento(new Date(1992));
 
         Pessoa pessoaSalva = new Pessoa();
         pessoaSalva.setId(1L);
         pessoaSalva.setNome("João");
         pessoaSalva.setDataNascimento(new Date(1993));
 
+        // Preparar comportamento do repositório
         when(pessoaRepository.save(any(Pessoa.class))).thenReturn(pessoaSalva);
 
-        PessoaDTO resultado = pessoaService.salvar(pessoaDTO);
+        // Executar a ação do serviço
+        PessoaDTO resultado = pessoaService.salvar(pessoaDTOEntrada);
 
-        assertNull(resultado);
+        // Verificar resultados
+        assertNotNull(resultado);
+        assertEquals(1L, resultado.getIdPessoa());
+        assertEquals("João", resultado.getNome());
     }
 
     @Test
-    void testListarPessoas() {
+    public void testListarPessoas() {
+        // Preparar comportamento do repositório
         List<Pessoa> pessoas = Arrays.asList(new Pessoa(), new Pessoa());
         when(pessoaRepository.findAll()).thenReturn(pessoas);
 
+        // Executar a ação do serviço
         List<PessoaDTO> resultado = pessoaService.listar();
 
-        assertNull(resultado);
-        assertEquals(pessoas.size(), resultado.size());
-    } */
+        // Verificar resultados
+        assertNotNull(resultado);
+        assertEquals(2, resultado.size());
+    }
+
 }

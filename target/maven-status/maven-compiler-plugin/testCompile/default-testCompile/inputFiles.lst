@@ -1,2 +1,4 @@
-/Users/victorbarros/Downloads/api-pessoas/src/test/java/br/com/attornatus/Pessoas/PessoasTests.java
-/Users/victorbarros/Downloads/api-pessoas/src/test/java/br/com/attornatus/Pessoas/EnderecoTests.java
+/Users/victorbarros/Downloads/api-pessoas/src/test/java/br/com/attornatus/Pessoas/EnderecoServiceTests.java
+/Users/victorbarros/Downloads/api-pessoas/src/test/java/br/com/attornatus/Pessoas/PessoaControllerTests.java
+/Users/victorbarros/Downloads/api-pessoas/src/test/java/br/com/attornatus/Pessoas/EnderecoControllerTests.java
+/Users/victorbarros/Downloads/api-pessoas/src/test/java/br/com/attornatus/Pessoas/PessoaServiceTests.java
