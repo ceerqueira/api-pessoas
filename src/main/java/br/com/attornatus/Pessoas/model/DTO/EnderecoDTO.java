@@ -21,5 +21,6 @@ public class EnderecoDTO {
     @NotNull
     private int numero;
     private String cidade ;
+    @NotNull
     private Long idPessoa;
 }
