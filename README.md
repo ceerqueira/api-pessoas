@@ -31,7 +31,7 @@ Listará em formato JSON todas as pessoas cadastradas.
 
 **GET** BUSCAR POR PESSOA `http://localhost:8080/pessoas/(idPessoa)`
 
-Listará em formato JSON a pessoa e seu endereço principal.
+Listará em formato JSON a pessoa, seu endereço principal e a lista de endereços cadastrados com essa pessoa.
 
 
 **PUT** ATUALIZAR DADOS DA PESSOA`http://localhost:8080/pessoas`
