@@ -40,7 +40,7 @@ public class PessoaServiceImpl implements PessoaService {
 
         Pessoa pessoaCadastrada = repository.save(pessoa);
         PessoaDTO novaPessoaCadastrada = new PessoaDTO(pessoaCadastrada.getId(), pessoaCadastrada.getNome(),
-                pessoaCadastrada.getDataNascimento(), 0L, null);
+                pessoaCadastrada.getDataNascimento(), 0L, null,null);
 
         return novaPessoaCadastrada;
     }
@@ -104,7 +104,16 @@ public class PessoaServiceImpl implements PessoaService {
 
         PessoaDTO pessoaDTO = converterParaDTO(pessoa);
 
+        adicionarEnderecosAPessoaDTO(id,pessoaDTO);
+
         return pessoaDTO;
+    }
+
+    public void adicionarEnderecosAPessoaDTO(Long id, PessoaDTO pessoaDTO) {
+        List<Endereco> listaEnderecoPessoa = enderecoRespository.findByPessoaId(id)
+                .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada com o ID: " + id));
+
+        pessoaDTO.getListaEnderecos().addAll(listaEnderecoPessoa);
     }
 
 }

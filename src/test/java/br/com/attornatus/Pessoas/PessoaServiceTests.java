@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -110,18 +111,25 @@ public class PessoaServiceTests {
         assertEquals("João", resultado.getNome());
     }
 
-    @Test
+@Test
     public void testConsultarPessoa() {
         Long pessoaId = 1L;
         Pessoa pessoa = new Pessoa();
         pessoa.setId(pessoaId);
         pessoa.setNome("Maria");
 
+        List<Endereco> listaEnderecoPessoa = new ArrayList<>();
+        // Adicione endereços à lista, se necessário.
+
         when(pessoaRepository.findById(pessoaId)).thenReturn(Optional.of(pessoa));
+        when(enderecoRepository.findByPessoaId(pessoaId)).thenReturn(Optional.of(listaEnderecoPessoa));
+
         PessoaDTO resultado = pessoaService.consultarPessoa(pessoaId);
 
         assertNotNull(resultado);
         assertEquals(pessoaId, resultado.getIdPessoa());
         assertEquals("Maria", resultado.getNome());
+        // Verifique se a lista de endereços foi adicionada corretamente ao DTO.
+        assertEquals(listaEnderecoPessoa, resultado.getListaEnderecos());
     }
 }

@@ -14,13 +14,14 @@ import lombok.Setter;
 @Setter
 @Builder
 public class EnderecoDTO {
-    @NotBlank
+    @NotBlank (message = "logradouro não pode ser vazio")
     private String logradouro; 
-    @NotBlank
+    @NotBlank (message = "cep não pode ser vazio")
     private String cep;
-    @NotNull
+    @NotNull (message = "numero não pode ser nulo")
     private int numero;
+    @NotBlank (message = "cidade não pode ser vazio")
     private String cidade ;
-    @NotNull
+    @NotNull (message = "idPessoa não pode ser nulo")
     private Long idPessoa;
 }
